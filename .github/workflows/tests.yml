@@ -1,0 +1,81 @@
+name: MedClinic TAF
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '0 2 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Середовище'
+        type: choice
+        options: [dev, staging, prod]
+        default: dev
+      tags:
+        description: 'Теги тестів (grep)'
+        type: choice
+        options: ['@smoke', '@regression', '@api', '@gui', 'all']
+        default: '@smoke'
+
+env:
+  ENV: ${{ github.event.inputs.environment || 'dev' }}
+  TAGS: ${{ github.event.inputs.tags || (github.event_name == 'schedule' && '@regression') || '@smoke' }}
+  REGISTRAR_LOGIN: ${{ secrets.REGISTRAR_LOGIN }}
+  REGISTRAR_PASSWORD: ${{ secrets.REGISTRAR_PASSWORD }}
+  PATIENT_LOGIN: ${{ secrets.PATIENT_LOGIN }}
+  PATIENT_PASSWORD: ${{ secrets.PATIENT_PASSWORD }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx bddgen
+      - name: Run tests (${{ env.TAGS }} on ${{ env.ENV }})
+        run: |
+          GREP=""
+          if [ "$TAGS" != "all" ]; then GREP="--grep $TAGS"; fi
+          npx playwright test $GREP --shard=${{ matrix.shard }}/3 --workers=4
+      - name: Upload allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-results-${{ matrix.shard }}
+          path: allure-results
+          retention-days: 14
+
+  report:
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: allure-results-*
+          path: allure-results
+          merge-multiple: true
+      - run: npx allure generate ./allure-results
+      - uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
+          retention-days: 30
