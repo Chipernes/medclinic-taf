@@ -1,0 +1,17 @@
+{
+  "description": "Набори даних для запису на прийом. Робочі години 08:00-17:30, слоти по 30 хв.",
+  "sets": {
+    "valid": [
+      { "id": "A1", "description": "Перший слот дня 08:00", "appointment": { "doctorId": 1, "date": "{{today+7d}}", "time": "08:00" }, "expected": { "status": 201 } },
+      { "id": "A2", "description": "Останній слот дня 17:30", "appointment": { "doctorId": 1, "date": "{{today+7d}}", "time": "17:30" }, "expected": { "status": 201 } }
+    ],
+    "boundary": [
+      { "id": "A3", "description": "За 30 хв до початку роботи (07:30)", "appointment": { "doctorId": 2, "date": "{{today+7d}}", "time": "07:30" }, "expected": { "status": 400, "field": "time", "message": "Прийом можливий з 08:00 до 17:30 кожні 30 хв" } },
+      { "id": "A4", "description": "Час закінчення роботи (18:00)", "appointment": { "doctorId": 2, "date": "{{today+7d}}", "time": "18:00" }, "expected": { "status": 400, "field": "time", "message": "Прийом можливий з 08:00 до 17:30 кожні 30 хв" } }
+    ],
+    "invalid": [
+      { "id": "A5", "description": "Час не кратний 30 хв (10:15)", "appointment": { "doctorId": 3, "date": "{{today+7d}}", "time": "10:15" }, "expected": { "status": 400, "field": "time", "message": "Прийом можливий з 08:00 до 17:30 кожні 30 хв" } },
+      { "id": "A6", "description": "Дата прийому в минулому", "appointment": { "doctorId": 3, "date": "{{today-1d}}", "time": "10:00" }, "expected": { "status": 400, "field": "date", "message": "Дата прийому не може бути в минулому" } }
+    ]
+  }
+}

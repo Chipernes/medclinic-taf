@@ -1,0 +1,18 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><title>MedClinic - Вхід</title><link rel="stylesheet" href="style.css"></head>
+<body><script src="common.js"></script>
+<main><h2>Вхід у систему</h2>
+<form id="login-form">
+<label for="login">Логін</label><input id="login" data-testid="login-input" autocomplete="off">
+<label for="password">Пароль</label><input id="password" type="password" data-testid="password-input">
+<button type="submit" data-testid="login-submit">Увійти</button>
+<div data-testid="alert" class="alert" hidden></div>
+</form></main>
+<script>
+document.getElementById('login-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const r = await api('/api/auth/login', 'POST', { login: login.value, password: password.value });
+  if (r.status !== 200) return alertBox(r.data.error, false);
+  sessionStorage.setItem('token', r.data.token); sessionStorage.setItem('name', r.data.name); sessionStorage.setItem('role', r.data.role);
+  location.href = r.data.role === 'patient' ? '/appointment.html' : '/patients.html';
+});
+</script></body></html>

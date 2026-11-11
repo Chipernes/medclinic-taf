@@ -1,0 +1,66 @@
+{
+  "description": "Набори даних для форми реєстрації пацієнта. Значення в подвійних фігурних дужках підставляє DataProvider.",
+  "sets": {
+    "valid": [
+      {
+        "id": "V1", "description": "Звичайний дорослий пацієнт",
+        "patient": { "fullName": "Шевченко Олена Петрівна", "birthDate": "1990-05-14", "phone": "+380671234567", "email": "olena.{{uniq}}@medclinic.test", "allergies": "Пеніцилін" },
+        "expected": { "status": 201 }
+      },
+      {
+        "id": "V2", "description": "ПІБ з апострофом і дефісом",
+        "patient": { "fullName": "Сав'юк-Левицька Ірина", "birthDate": "1985-11-02", "phone": "+380931112233", "email": "iryna.{{uniq}}@medclinic.test" },
+        "expected": { "status": 201 }
+      }
+    ],
+    "boundary": [
+      {
+        "id": "B1", "description": "ПІБ мінімальної довжини (2 символи)",
+        "patient": { "fullName": "Ян", "birthDate": "2001-01-01", "phone": "+380501234567", "email": "yan.{{uniq}}@medclinic.test" },
+        "expected": { "status": 201 }
+      },
+      {
+        "id": "B2", "description": "ПІБ максимальної довжини (50 символів)",
+        "patient": { "fullName": "{{repeat:а:50}}", "birthDate": "2001-01-01", "phone": "+380501234568", "email": "max.{{uniq}}@medclinic.test" },
+        "expected": { "status": 201 }
+      },
+      {
+        "id": "B3", "description": "Новонароджений (вік 0, народився сьогодні)",
+        "patient": { "fullName": "Коваль Марко", "birthDate": "{{today}}", "phone": "+380661234567", "email": "baby.{{uniq}}@medclinic.test" },
+        "expected": { "status": 201 }
+      },
+      {
+        "id": "B4", "description": "Максимальний вік (рівно 120 років)",
+        "patient": { "fullName": "Гнатюк Степан", "birthDate": "{{today-120y}}", "phone": "+380961234567", "email": "senior.{{uniq}}@medclinic.test" },
+        "expected": { "status": 201 }
+      },
+      {
+        "id": "B5", "description": "ПІБ довший за максимум (51 символ)",
+        "patient": { "fullName": "{{repeat:а:51}}", "birthDate": "2001-01-01", "phone": "+380501234569", "email": "long.{{uniq}}@medclinic.test" },
+        "expected": { "status": 400, "field": "fullName", "message": "ПІБ має містити від 2 до 50 символів" }
+      }
+    ],
+    "invalid": [
+      {
+        "id": "I1", "description": "Телефон без коду країни",
+        "patient": { "fullName": "Петренко Іван", "birthDate": "1978-03-20", "phone": "0671234567", "email": "ivan.{{uniq}}@medclinic.test" },
+        "expected": { "status": 400, "field": "phone", "message": "Телефон у форматі +380XXXXXXXXX" }
+      },
+      {
+        "id": "I2", "description": "Дата народження в майбутньому",
+        "patient": { "fullName": "Петренко Іван", "birthDate": "{{today+1d}}", "phone": "+380671234560", "email": "ivan.{{uniq}}@medclinic.test" },
+        "expected": { "status": 400, "field": "birthDate", "message": "Дата народження не може бути в майбутньому" }
+      },
+      {
+        "id": "I3", "description": "Email без символу @",
+        "patient": { "fullName": "Петренко Іван", "birthDate": "1978-03-20", "phone": "+380671234561", "email": "ivan.petrenko.mail.com" },
+        "expected": { "status": 400, "field": "email", "message": "Некоректний email" }
+      },
+      {
+        "id": "I4", "description": "Цифри в ПІБ",
+        "patient": { "fullName": "Іван2 Петренко", "birthDate": "1978-03-20", "phone": "+380671234562", "email": "ivan2.{{uniq}}@medclinic.test" },
+        "expected": { "status": 400, "field": "fullName", "message": "ПІБ може містити тільки літери, пробіл, дефіс і апостроф" }
+      }
+    ]
+  }
+}

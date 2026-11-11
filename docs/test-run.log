@@ -1,0 +1,422 @@
+2026-11-10T18:47:08.129Z [INFO ] [TC-API-01] === START Auth API > TC-API-01 Реєстратор входить з валідними даними @smoke @api (env=dev, worker=1)
+2026-11-10T18:47:08.131Z [INFO ] [TC-API-01] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:08.207Z [INFO ] [TC-API-05] === START Appointments API > TC-API-05 Один слот лікаря не можна забронувати двічі @api @regression (env=dev, worker=0)
+2026-11-10T18:47:08.208Z [INFO ] [TC-API-05] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:08.219Z [INFO ] [TC-API-03 [V1]] === START Patients API > TC-API-03 [V1] valid: Звичайний дорослий пацієнт @api @regression (env=dev, worker=3)
+2026-11-10T18:47:08.220Z [INFO ] [TC-API-03 [V1]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:08.255Z [INFO ] [TC-API-02] === START Auth API > TC-API-02 Вхід з неправильним паролем відхиляється @api @security (env=dev, worker=2)
+2026-11-10T18:47:08.257Z [INFO ] [TC-API-02] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:08.720Z [INFO ] [TC-API-05] ← 200 POST /api/auth/login (510 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:08.747Z [INFO ] [TC-API-02] ← 401 POST /api/auth/login (489 ms) {"error":"Невірний логін або пароль"}
+2026-11-10T18:47:08.756Z [INFO ] [TC-API-02] === END status=passed duration=552 ms
+2026-11-10T18:47:08.760Z [INFO ] [TC-API-05] → POST /api/patients {"fullName":"Литвин Оксана","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.179433642876097@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:08.763Z [INFO ] [TC-API-01] ← 200 POST /api/auth/login (629 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:08.783Z [INFO ] [TC-API-01] === END status=passed duration=688 ms
+2026-11-10T18:47:08.800Z [INFO ] [TC-API-03 [V1]] ← 200 POST /api/auth/login (574 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:08.813Z [INFO ] [TC-API-03 [V1]] → POST /api/patients {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"olena.1794336427977275@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:08.832Z [INFO ] [TC-API-03 [V2]] === START Patients API > TC-API-03 [V2] valid: ПІБ з апострофом і дефісом @api @regression (env=dev, worker=2)
+2026-11-10T18:47:08.835Z [INFO ] [TC-API-03 [V2]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:08.852Z [INFO ] [TC-API-03 [B1]] === START Patients API > TC-API-03 [B1] boundary: ПІБ мінімальної довжини (2 символи) @api @regression (env=dev, worker=1)
+2026-11-10T18:47:08.852Z [INFO ] [TC-API-03 [B1]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:09.120Z [INFO ] [TC-API-05] ← 201 POST /api/patients (359 ms) {"id":1,"fullName":"Литвин Оксана","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.179433642876097@medclinic.test","allergies":"Пеніцилін","createdAt":"2026-11-10T18:47:09.117Z"}
+2026-11-10T18:47:09.121Z [INFO ] [TC-API-05] → POST /api/patients {"fullName":"Литвин Тарас","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336429121870@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:09.153Z [INFO ] [TC-API-03 [V1]] ← 201 POST /api/patients (339 ms) {"id":2,"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"olena.1794336427977275@medclinic.test","allergies":"Пеніцилін","createdAt":"2026-11-10T18:47:09.149Z"}
+2026-11-10T18:47:09.156Z [INFO ] [TC-API-03 [V1]] → DELETE /api/patients/2 
+2026-11-10T18:47:09.261Z [INFO ] [TC-API-03 [B1]] ← 200 POST /api/auth/login (408 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:09.265Z [INFO ] [TC-API-03 [B1]] → POST /api/patients {"fullName":"Ян","birthDate":"2001-01-01","phone":"+380501234567","email":"yan.1794336428839700@medclinic.test"}
+2026-11-10T18:47:09.278Z [INFO ] [TC-API-03 [V2]] ← 200 POST /api/auth/login (442 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:09.282Z [INFO ] [TC-API-03 [V2]] → POST /api/patients {"fullName":"Сав'юк-Левицька Ірина","birthDate":"1985-11-02","phone":"+380931112233","email":"iryna.1794336428799983@medclinic.test"}
+2026-11-10T18:47:09.307Z [INFO ] [TC-API-05] ← 201 POST /api/patients (185 ms) {"id":3,"fullName":"Литвин Тарас","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336429121870@medclinic.test","allergies":"Пеніцилін","createdAt":"2026-11-10T18:47:09.304Z"}
+2026-11-10T18:47:09.308Z [INFO ] [TC-API-05] → POST /api/appointments {"doctorId":3,"date":"2026-12-10","time":"12:00","patientId":1}
+2026-11-10T18:47:09.406Z [INFO ] [TC-API-03 [B1]] ← 201 POST /api/patients (140 ms) {"id":4,"fullName":"Ян","birthDate":"2001-01-01","phone":"+380501234567","email":"yan.1794336428839700@medclinic.test","createdAt":"2026-11-10T18:47:09.403Z"}
+2026-11-10T18:47:09.408Z [INFO ] [TC-API-03 [B1]] → DELETE /api/patients/4 
+2026-11-10T18:47:09.459Z [INFO ] [TC-API-03 [V2]] ← 201 POST /api/patients (177 ms) {"id":5,"fullName":"Сав'юк-Левицька Ірина","birthDate":"1985-11-02","phone":"+380931112233","email":"iryna.1794336428799983@medclinic.test","createdAt":"2026-11-10T18:47:09.457Z"}
+2026-11-10T18:47:09.461Z [INFO ] [TC-API-03 [V2]] → DELETE /api/patients/5 
+2026-11-10T18:47:09.766Z [INFO ] [TC-API-03 [V1]] ← 204 DELETE /api/patients/2 (609 ms) null
+2026-11-10T18:47:09.767Z [INFO ] [TC-API-03 [V1]] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:09.767Z [INFO ] [TC-API-03 [V1]] === END status=passed duration=987 ms
+2026-11-10T18:47:09.798Z [INFO ] [TC-API-03 [B2]] === START Patients API > TC-API-03 [B2] boundary: ПІБ максимальної довжини (50 символів) @api @regression (env=dev, worker=3)
+2026-11-10T18:47:09.798Z [INFO ] [TC-API-03 [B2]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:09.849Z [INFO ] [TC-API-05] ← 201 POST /api/appointments (540 ms) {"id":6,"patientId":1,"doctorId":3,"date":"2026-12-10","time":"12:00"}
+2026-11-10T18:47:09.850Z [INFO ] [TC-API-05] → POST /api/appointments {"doctorId":3,"date":"2026-12-10","time":"12:00","patientId":3}
+2026-11-10T18:47:09.964Z [INFO ] [TC-API-03 [V2]] ← 204 DELETE /api/patients/5 (498 ms) null
+2026-11-10T18:47:09.964Z [INFO ] [TC-API-03 [B1]] ← 204 DELETE /api/patients/4 (556 ms) null
+2026-11-10T18:47:09.965Z [INFO ] [TC-API-03 [V2]] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:09.965Z [INFO ] [TC-API-03 [V2]] === END status=passed duration=641 ms
+2026-11-10T18:47:09.965Z [INFO ] [TC-API-03 [B1]] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:09.965Z [INFO ] [TC-API-03 [B1]] === END status=passed duration=559 ms
+2026-11-10T18:47:10.004Z [INFO ] [TC-API-03 [B3]] === START Patients API > TC-API-03 [B3] boundary: Новонароджений (вік 0, народився сьогодні) @api @regression (env=dev, worker=2)
+2026-11-10T18:47:10.004Z [INFO ] [TC-API-03 [B3]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:10.016Z [INFO ] [TC-API-03 [B4]] === START Patients API > TC-API-03 [B4] boundary: Максимальний вік (рівно 120 років) @api @regression (env=dev, worker=1)
+2026-11-10T18:47:10.017Z [INFO ] [TC-API-03 [B4]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:10.024Z [INFO ] [TC-API-03 [B2]] ← 200 POST /api/auth/login (225 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:10.027Z [INFO ] [TC-API-03 [B2]] → POST /api/patients {"fullName":"аааааааааааааааааааааааааааааааааааааааааааааааааа","birthDate":"2001-01-01","phone":"+380501234568","email":"max.1794336427977699@medclinic.test"}
+2026-11-10T18:47:10.200Z [INFO ] [TC-API-03 [B4]] ← 200 POST /api/auth/login (182 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:10.200Z [INFO ] [TC-API-05] ← 409 POST /api/appointments (350 ms) {"error":"Цей час у лікаря вже зайнятий"}
+2026-11-10T18:47:10.202Z [INFO ] [TC-API-03 [B4]] → POST /api/patients {"fullName":"Гнатюк Степан","birthDate":"1906-11-10","phone":"+380961234567","email":"senior.1794336428839748@medclinic.test"}
+2026-11-10T18:47:10.202Z [INFO ] [TC-API-05] → DELETE /api/appointments/6 
+2026-11-10T18:47:10.383Z [INFO ] [TC-API-03 [B3]] ← 200 POST /api/auth/login (379 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:10.385Z [INFO ] [TC-API-03 [B3]] → POST /api/patients {"fullName":"Коваль Марко","birthDate":"2026-11-10","phone":"+380661234567","email":"baby.179433642879953@medclinic.test"}
+2026-11-10T18:47:10.578Z [INFO ] [TC-API-03 [B3]] ← 201 POST /api/patients (193 ms) {"id":7,"fullName":"Коваль Марко","birthDate":"2026-11-10","phone":"+380661234567","email":"baby.179433642879953@medclinic.test","createdAt":"2026-11-10T18:47:10.576Z"}
+2026-11-10T18:47:10.581Z [INFO ] [TC-API-03 [B3]] → DELETE /api/patients/7 
+2026-11-10T18:47:10.604Z [INFO ] [TC-API-03 [B2]] ← 201 POST /api/patients (576 ms) {"id":8,"fullName":"аааааааааааааааааааааааааааааааааааааааааааааааааа","birthDate":"2001-01-01","phone":"+380501234568","email":"max.1794336427977699@medclinic.test","createdAt":"2026-11-10T18:47:10.601Z"}
+2026-11-10T18:47:10.605Z [INFO ] [TC-API-03 [B2]] → DELETE /api/patients/8 
+2026-11-10T18:47:10.655Z [INFO ] [TC-API-05] ← 204 DELETE /api/appointments/6 (452 ms) null
+2026-11-10T18:47:10.656Z [INFO ] [TC-API-05] → DELETE /api/patients/1 
+2026-11-10T18:47:10.741Z [INFO ] [TC-API-03 [B4]] ← 400 POST /api/patients (539 ms) {"errors":{"birthDate":"Вік має бути від 0 до 120 років"}}
+2026-11-10T18:47:10.745Z [INFO ] [TC-API-03 [B4]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:10.745Z [INFO ] [TC-API-03 [B4]] === END status=failed duration=739 ms
+2026-11-10T18:47:10.818Z [INFO ] [TC-API-03 [B3]] ← 204 DELETE /api/patients/7 (236 ms) null
+2026-11-10T18:47:10.818Z [INFO ] [TC-API-03 [B3]] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:10.818Z [INFO ] [TC-API-03 [B3]] === END status=passed duration=586 ms
+2026-11-10T18:47:10.852Z [INFO ] [TC-API-03 [I1]] === START Patients API > TC-API-03 [I1] invalid: Телефон без коду країни @api @regression (env=dev, worker=2)
+2026-11-10T18:47:10.852Z [INFO ] [TC-API-03 [I1]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:11.013Z [INFO ] [TC-API-03 [B2]] ← 204 DELETE /api/patients/8 (407 ms) null
+2026-11-10T18:47:11.013Z [INFO ] [TC-API-03 [B2]] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:11.013Z [INFO ] [TC-API-03 [B2]] === END status=passed duration=818 ms
+2026-11-10T18:47:11.050Z [INFO ] [TC-API-03 [I2]] === START Patients API > TC-API-03 [I2] invalid: Дата народження в майбутньому @api @regression (env=dev, worker=3)
+2026-11-10T18:47:11.050Z [INFO ] [TC-API-03 [I2]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:11.068Z [INFO ] [TC-API-05] ← 204 DELETE /api/patients/1 (411 ms) null
+2026-11-10T18:47:11.068Z [INFO ] [TC-API-05] → DELETE /api/patients/3 
+2026-11-10T18:47:11.353Z [INFO ] [TC-API-05] ← 204 DELETE /api/patients/3 (284 ms) null
+2026-11-10T18:47:11.353Z [INFO ] [TC-API-05] Cleanup: removed 2 patients, 1 appointments
+2026-11-10T18:47:11.353Z [INFO ] [TC-API-05] === END status=passed duration=2037 ms
+2026-11-10T18:47:11.357Z [INFO ] [TC-API-03 [B5]] === START Patients API > TC-API-03 [B5] boundary: ПІБ довший за максимум (51 символ) @api @regression (env=dev, worker=4)
+2026-11-10T18:47:11.358Z [INFO ] [TC-API-03 [B5]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:11.400Z [INFO ] [TC-API-03 [I3]] === START Patients API > TC-API-03 [I3] invalid: Email без символу @ @api @regression (env=dev, worker=0)
+2026-11-10T18:47:11.400Z [INFO ] [TC-API-03 [I3]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:11.431Z [INFO ] [TC-API-03 [I1]] ← 200 POST /api/auth/login (574 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:11.433Z [INFO ] [TC-API-03 [I1]] → POST /api/patients {"fullName":"Петренко Іван","birthDate":"1978-03-20","phone":"0671234567","email":"ivan.1794336428799432@medclinic.test"}
+2026-11-10T18:47:11.617Z [INFO ] [TC-API-03 [I2]] ← 200 POST /api/auth/login (566 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:11.623Z [INFO ] [TC-API-03 [I2]] → POST /api/patients {"fullName":"Петренко Іван","birthDate":"2026-11-11","phone":"+380671234560","email":"ivan.1794336427977112@medclinic.test"}
+2026-11-10T18:47:11.656Z [INFO ] [TC-API-03 [I3]] ← 200 POST /api/auth/login (255 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:11.658Z [INFO ] [TC-API-03 [I3]] → POST /api/patients {"fullName":"Петренко Іван","birthDate":"1978-03-20","phone":"+380671234561","email":"ivan.petrenko.mail.com"}
+2026-11-10T18:47:11.695Z [INFO ] [TC-API-03 [I1]] ← 400 POST /api/patients (261 ms) {"errors":{"phone":"Телефон у форматі +380XXXXXXXXX"}}
+2026-11-10T18:47:11.697Z [INFO ] [TC-API-03 [I1]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:11.697Z [INFO ] [TC-API-03 [I1]] === END status=passed duration=857 ms
+2026-11-10T18:47:11.721Z [INFO ] [TC-API-03 [I4]] === START Patients API > TC-API-03 [I4] invalid: Цифри в ПІБ @api @regression (env=dev, worker=2)
+2026-11-10T18:47:11.721Z [INFO ] [TC-API-03 [I4]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:11.742Z [INFO ] [TC-API-03 [B5]] ← 200 POST /api/auth/login (383 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:11.748Z [INFO ] [TC-API-03 [B5]] → POST /api/patients {"fullName":"ааааааааааааааааааааааааааааааааааааааааааааааааааа","birthDate":"2001-01-01","phone":"+380501234569","email":"long.1794336431273660@medclinic.test"}
+2026-11-10T18:47:11.970Z [INFO ] [TC-API-03 [I2]] ← 400 POST /api/patients (346 ms) {"errors":{"birthDate":"Дата народження не може бути в майбутньому"}}
+2026-11-10T18:47:11.972Z [INFO ] [TC-API-03 [I2]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:11.972Z [INFO ] [TC-API-03 [I2]] === END status=passed duration=925 ms
+2026-11-10T18:47:11.993Z [INFO ] [TC-API-04] === START Patients API > TC-API-04 Пацієнт не може реєструвати інших пацієнтів @api @security (env=dev, worker=3)
+2026-11-10T18:47:11.994Z [INFO ] [TC-API-04] → POST /api/auth/login {"login":"patient","password":"***"}
+2026-11-10T18:47:12.022Z [INFO ] [TC-API-03 [I3]] ← 400 POST /api/patients (364 ms) {"errors":{"email":"Некоректний email"}}
+2026-11-10T18:47:12.023Z [INFO ] [TC-API-03 [I3]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:12.024Z [INFO ] [TC-API-03 [I3]] === END status=passed duration=630 ms
+2026-11-10T18:47:12.037Z [INFO ] [TC-API-03 [B5]] ← 400 POST /api/patients (288 ms) {"errors":{"fullName":"ПІБ має містити від 2 до 50 символів"}}
+2026-11-10T18:47:12.039Z [INFO ] [TC-API-03 [B5]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:12.039Z [INFO ] [TC-API-03 [B5]] === END status=passed duration=722 ms
+2026-11-10T18:47:12.136Z [INFO ] [TC-API-03 [I4]] ← 200 POST /api/auth/login (414 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:12.141Z [INFO ] [TC-API-03 [I4]] → POST /api/patients {"fullName":"Іван2 Петренко","birthDate":"1978-03-20","phone":"+380671234562","email":"ivan2.1794336428799968@medclinic.test"}
+2026-11-10T18:47:12.228Z [INFO ] [TC-API-04] ← 200 POST /api/auth/login (233 ms) {"token":"***","role":"patient","name":"Андрій Бондар"}
+2026-11-10T18:47:12.231Z [INFO ] [TC-API-04] → POST /api/patients {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336432231321@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:12.260Z [INFO ] [TC-API-03 [I4]] ← 400 POST /api/patients (118 ms) {"errors":{"fullName":"ПІБ може містити тільки літери, пробіл, дефіс і апостроф"}}
+2026-11-10T18:47:12.261Z [INFO ] [TC-API-03 [I4]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:12.262Z [INFO ] [TC-API-03 [I4]] === END status=passed duration=543 ms
+2026-11-10T18:47:12.399Z [INFO ] [TC-API-04] ← 403 POST /api/patients (162 ms) {"error":"Недостатньо прав"}
+2026-11-10T18:47:12.400Z [INFO ] [TC-API-04] === END status=passed duration=410 ms
+2026-11-10T18:47:13.106Z [INFO ] [TC-GUI-03 [A2]] === START Запис на прийом (GUI) > TC-GUI-03 [A2] valid: Останній слот дня 17:30 @gui @regression (env=dev, worker=6)
+2026-11-10T18:47:13.133Z [INFO ] [TC-GUI-03 [A2]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:13.291Z [INFO ] [TC-GUI-03 [A1]] === START Запис на прийом (GUI) > TC-GUI-03 [A1] valid: Перший слот дня 08:00 @gui @regression (env=dev, worker=5)
+2026-11-10T18:47:13.319Z [INFO ] [TC-GUI-03 [A1]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:13.519Z [INFO ] [TC-GUI-03 [A2]] ← 200 POST /api/auth/login (380 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:13.629Z [INFO ] [TC-GUI-03 [A2]] KEYWORD CreatePatientViaApi ["Шевченко Олена Петрівна"]
+2026-11-10T18:47:13.629Z [INFO ] [TC-GUI-03 [A2]] → POST /api/patients {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336433626916@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:13.756Z [INFO ] [TC-GUI-03 [A4]] === START Запис на прийом (GUI) > TC-GUI-03 [A4] boundary: Час закінчення роботи (18:00) @gui @regression (env=dev, worker=8)
+2026-11-10T18:47:13.764Z [INFO ] [TC-GUI-03 [A4]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:13.858Z [INFO ] [TC-GUI-03 [A3]] === START Запис на прийом (GUI) > TC-GUI-03 [A3] boundary: За 30 хв до початку роботи (07:30) @gui @regression (env=dev, worker=7)
+2026-11-10T18:47:13.872Z [INFO ] [TC-GUI-03 [A3]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:13.936Z [INFO ] [TC-GUI-03 [A1]] ← 200 POST /api/auth/login (614 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:13.968Z [INFO ] [TC-GUI-03 [A1]] KEYWORD CreatePatientViaApi ["Шевченко Олена Петрівна"]
+2026-11-10T18:47:13.968Z [INFO ] [TC-GUI-03 [A1]] → POST /api/patients {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336433968273@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:14.216Z [INFO ] [TC-GUI-03 [A3]] ← 200 POST /api/auth/login (343 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:14.220Z [INFO ] [TC-GUI-03 [A4]] ← 200 POST /api/auth/login (455 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:14.254Z [INFO ] [TC-GUI-03 [A3]] KEYWORD CreatePatientViaApi ["Шевченко Олена Петрівна"]
+2026-11-10T18:47:14.254Z [INFO ] [TC-GUI-03 [A3]] → POST /api/patients {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336434253323@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:14.254Z [INFO ] [TC-GUI-03 [A4]] KEYWORD CreatePatientViaApi ["Шевченко Олена Петрівна"]
+2026-11-10T18:47:14.254Z [INFO ] [TC-GUI-03 [A4]] → POST /api/patients {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336434254209@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:14.264Z [INFO ] [TC-GUI-03 [A2]] ← 201 POST /api/patients (628 ms) {"id":9,"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336433626916@medclinic.test","allergies":"Пеніцилін","createdAt":"2026-11-10T18:47:14.251Z"}
+2026-11-10T18:47:14.265Z [INFO ] [TC-GUI-03 [A2]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:14.265Z [INFO ] [TC-GUI-03 [A2]] Open page /login.html
+2026-11-10T18:47:14.337Z [INFO ] [TC-GUI-03 [A2]] Login as "registrar"
+2026-11-10T18:47:14.401Z [INFO ] [TC-GUI-03 [A1]] ← 201 POST /api/patients (432 ms) {"id":10,"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336433968273@medclinic.test","allergies":"Пеніцилін","createdAt":"2026-11-10T18:47:14.394Z"}
+2026-11-10T18:47:14.402Z [INFO ] [TC-GUI-03 [A1]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:14.402Z [INFO ] [TC-GUI-03 [A1]] Open page /login.html
+2026-11-10T18:47:14.513Z [INFO ] [TC-GUI-03 [A1]] Login as "registrar"
+2026-11-10T18:47:14.628Z [INFO ] [TC-GUI-03 [A3]] ← 201 POST /api/patients (373 ms) {"id":11,"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336434253323@medclinic.test","allergies":"Пеніцилін","createdAt":"2026-11-10T18:47:14.624Z"}
+2026-11-10T18:47:14.630Z [INFO ] [TC-GUI-03 [A3]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:14.630Z [INFO ] [TC-GUI-03 [A3]] Open page /login.html
+2026-11-10T18:47:14.722Z [INFO ] [TC-GUI-03 [A3]] Login as "registrar"
+2026-11-10T18:47:14.743Z [INFO ] [TC-GUI-03 [A4]] ← 201 POST /api/patients (481 ms) {"id":12,"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336434254209@medclinic.test","allergies":"Пеніцилін","createdAt":"2026-11-10T18:47:14.733Z"}
+2026-11-10T18:47:14.745Z [INFO ] [TC-GUI-03 [A4]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:14.745Z [INFO ] [TC-GUI-03 [A4]] Open page /login.html
+2026-11-10T18:47:14.844Z [INFO ] [TC-GUI-03 [A4]] Login as "registrar"
+2026-11-10T18:47:15.381Z [INFO ] [TC-GUI-03 [A2]] KEYWORD BookAppointment [{"doctorId":1,"date":"2026-11-17","time":"17:30","patientId":9}]
+2026-11-10T18:47:15.381Z [INFO ] [TC-GUI-03 [A2]] Open page /appointment.html
+2026-11-10T18:47:15.630Z [INFO ] [TC-GUI-03 [A1]] KEYWORD BookAppointment [{"doctorId":1,"date":"2026-11-17","time":"08:00","patientId":10}]
+2026-11-10T18:47:15.639Z [INFO ] [TC-GUI-03 [A1]] Open page /appointment.html
+2026-11-10T18:47:15.713Z [INFO ] [TC-GUI-03 [A2]] Book appointment: patient=9, doctor=1, 2026-11-17 17:30
+2026-11-10T18:47:15.829Z [INFO ] [TC-GUI-03 [A1]] Book appointment: patient=10, doctor=1, 2026-11-17 08:00
+2026-11-10T18:47:15.900Z [INFO ] [TC-GUI-03 [A3]] KEYWORD BookAppointment [{"doctorId":2,"date":"2026-11-17","time":"07:30","patientId":11}]
+2026-11-10T18:47:15.900Z [INFO ] [TC-GUI-03 [A3]] Open page /appointment.html
+2026-11-10T18:47:15.928Z [INFO ] [TC-GUI-03 [A2]] KEYWORD VerifySuccessMessage ["Запис створено"]
+2026-11-10T18:47:16.024Z [INFO ] [TC-GUI-03 [A4]] KEYWORD BookAppointment [{"doctorId":2,"date":"2026-11-17","time":"18:00","patientId":12}]
+2026-11-10T18:47:16.024Z [INFO ] [TC-GUI-03 [A4]] Open page /appointment.html
+2026-11-10T18:47:16.144Z [INFO ] [TC-GUI-03 [A1]] KEYWORD VerifySuccessMessage ["Запис створено"]
+2026-11-10T18:47:16.298Z [INFO ] [TC-GUI-03 [A2]] → DELETE /api/appointments/13 
+2026-11-10T18:47:16.470Z [INFO ] [TC-GUI-03 [A3]] Book appointment: patient=11, doctor=2, 2026-11-17 07:30
+2026-11-10T18:47:16.635Z [INFO ] [TC-GUI-03 [A3]] KEYWORD VerifyValidationError ["time","Прийом можливий з 08:00 до 17:30 кожні 30 хв"]
+2026-11-10T18:47:16.804Z [INFO ] [TC-GUI-03 [A2]] ← 204 DELETE /api/appointments/13 (504 ms) null
+2026-11-10T18:47:16.805Z [INFO ] [TC-GUI-03 [A2]] → DELETE /api/patients/9 
+2026-11-10T18:47:16.982Z [INFO ] [TC-GUI-03 [A1]] → DELETE /api/appointments/14 
+2026-11-10T18:47:16.999Z [INFO ] [TC-GUI-03 [A2]] ← 204 DELETE /api/patients/9 (193 ms) null
+2026-11-10T18:47:17.000Z [INFO ] [TC-GUI-03 [A2]] Cleanup: removed 1 patients, 1 appointments
+2026-11-10T18:47:17.006Z [INFO ] [TC-GUI-03 [A2]] === END status=passed duration=3311 ms
+2026-11-10T18:47:17.040Z [INFO ] [TC-GUI-03 [A4]] Book appointment: patient=12, doctor=2, 2026-11-17 18:00
+2026-11-10T18:47:17.048Z [WARN ] [TC-GUI-03 [A3]] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:17.111Z [INFO ] [TC-GUI-03 [A1]] ← 204 DELETE /api/appointments/14 (129 ms) null
+2026-11-10T18:47:17.112Z [INFO ] [TC-GUI-03 [A1]] → DELETE /api/patients/10 
+2026-11-10T18:47:17.168Z [INFO ] [TC-GUI-03 [A5]] === START Запис на прийом (GUI) > TC-GUI-03 [A5] invalid: Час не кратний 30 хв (10:15) @gui @regression (env=dev, worker=6)
+2026-11-10T18:47:17.184Z [INFO ] [TC-GUI-03 [A5]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:17.258Z [INFO ] [TC-GUI-03 [A4]] KEYWORD VerifyValidationError ["time","Прийом можливий з 08:00 до 17:30 кожні 30 хв"]
+2026-11-10T18:47:17.272Z [INFO ] [TC-GUI-03 [A1]] ← 204 DELETE /api/patients/10 (159 ms) null
+2026-11-10T18:47:17.275Z [INFO ] [TC-GUI-03 [A1]] Cleanup: removed 1 patients, 1 appointments
+2026-11-10T18:47:17.285Z [INFO ] [TC-GUI-03 [A1]] === END status=passed duration=3795 ms
+2026-11-10T18:47:17.350Z [INFO ] [TC-GUI-03 [A6]] === START Запис на прийом (GUI) > TC-GUI-03 [A6] invalid: Дата прийому в минулому @gui @regression (env=dev, worker=5)
+2026-11-10T18:47:17.355Z [INFO ] [TC-GUI-03 [A6]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:17.432Z [INFO ] [TC-GUI-03 [A3]] → DELETE /api/patients/11 
+2026-11-10T18:47:17.468Z [INFO ] [TC-GUI-03 [A5]] ← 200 POST /api/auth/login (283 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:17.471Z [INFO ] [TC-GUI-03 [A5]] KEYWORD CreatePatientViaApi ["Шевченко Олена Петрівна"]
+2026-11-10T18:47:17.471Z [INFO ] [TC-GUI-03 [A5]] → POST /api/patients {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.179433643747143@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:17.588Z [INFO ] [TC-GUI-03 [A6]] ← 200 POST /api/auth/login (232 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:17.591Z [INFO ] [TC-GUI-03 [A6]] KEYWORD CreatePatientViaApi ["Шевченко Олена Петрівна"]
+2026-11-10T18:47:17.591Z [INFO ] [TC-GUI-03 [A6]] → POST /api/patients {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336437590843@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:17.784Z [INFO ] [TC-GUI-03 [A6]] ← 201 POST /api/patients (192 ms) {"id":16,"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336437590843@medclinic.test","allergies":"Пеніцилін","createdAt":"2026-11-10T18:47:17.781Z"}
+2026-11-10T18:47:17.785Z [INFO ] [TC-GUI-03 [A6]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:17.785Z [INFO ] [TC-GUI-03 [A6]] Open page /login.html
+2026-11-10T18:47:17.845Z [INFO ] [TC-GUI-03 [A6]] Login as "registrar"
+2026-11-10T18:47:17.902Z [INFO ] [TC-GUI-03 [A5]] ← 201 POST /api/patients (430 ms) {"id":17,"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.179433643747143@medclinic.test","allergies":"Пеніцилін","createdAt":"2026-11-10T18:47:17.899Z"}
+2026-11-10T18:47:17.904Z [INFO ] [TC-GUI-03 [A5]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:17.904Z [INFO ] [TC-GUI-03 [A5]] Open page /login.html
+2026-11-10T18:47:17.979Z [INFO ] [TC-GUI-03 [A5]] Login as "registrar"
+2026-11-10T18:47:18.020Z [INFO ] [TC-GUI-03 [A3]] ← 204 DELETE /api/patients/11 (583 ms) null
+2026-11-10T18:47:18.020Z [INFO ] [TC-GUI-03 [A3]] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:18.027Z [INFO ] [TC-GUI-03 [A3]] === END status=passed duration=3640 ms
+2026-11-10T18:47:18.198Z [INFO ] [TC-GUI-01] === START Реєстрація пацієнта (GUI) > TC-GUI-01 Реєстратор успішно реєструє нового пацієнта @smoke @gui (env=dev, worker=7)
+2026-11-10T18:47:18.204Z [INFO ] [TC-GUI-01] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:18.414Z [INFO ] [TC-GUI-03 [A5]] KEYWORD BookAppointment [{"doctorId":3,"date":"2026-11-17","time":"10:15","patientId":17}]
+2026-11-10T18:47:18.414Z [INFO ] [TC-GUI-03 [A5]] Open page /appointment.html
+2026-11-10T18:47:18.651Z [INFO ] [TC-GUI-01] ← 200 POST /api/auth/login (447 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:18.654Z [INFO ] [TC-GUI-01] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:18.654Z [INFO ] [TC-GUI-01] Open page /login.html
+2026-11-10T18:47:18.693Z [INFO ] [TC-GUI-01] Login as "registrar"
+2026-11-10T18:47:18.964Z [INFO ] [TC-GUI-03 [A6]] KEYWORD BookAppointment [{"doctorId":3,"date":"2026-11-09","time":"10:00","patientId":16}]
+2026-11-10T18:47:18.964Z [INFO ] [TC-GUI-03 [A6]] Open page /appointment.html
+2026-11-10T18:47:19.169Z [INFO ] [TC-GUI-01] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:19.169Z [INFO ] [TC-GUI-01] Open page /patients.html
+2026-11-10T18:47:19.210Z [INFO ] [TC-GUI-01] KEYWORD FillPatientForm ["Шевченко Олена Петрівна"]
+2026-11-10T18:47:19.210Z [INFO ] [TC-GUI-01] Fill patient form: {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336439210624@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:19.306Z [INFO ] [TC-GUI-03 [A5]] Book appointment: patient=17, doctor=3, 2026-11-17 10:15
+2026-11-10T18:47:19.371Z [INFO ] [TC-GUI-01] KEYWORD SubmitForm []
+2026-11-10T18:47:19.434Z [INFO ] [TC-GUI-01] KEYWORD VerifySuccessMessage ["Пацієнта зареєстровано"]
+2026-11-10T18:47:19.521Z [INFO ] [TC-GUI-03 [A5]] KEYWORD VerifyValidationError ["time","Прийом можливий з 08:00 до 17:30 кожні 30 хв"]
+2026-11-10T18:47:19.841Z [WARN ] [TC-GUI-03 [A5]] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:19.860Z [INFO ] [TC-GUI-03 [A6]] Book appointment: patient=16, doctor=3, 2026-11-09 10:00
+2026-11-10T18:47:19.992Z [INFO ] [TC-GUI-03 [A6]] KEYWORD VerifyValidationError ["date","Дата прийому не може бути в минулому"]
+2026-11-10T18:47:20.281Z [INFO ] [TC-GUI-01] → DELETE /api/patients/18 
+2026-11-10T18:47:20.310Z [INFO ] [TC-GUI-03 [A5]] → DELETE /api/patients/17 
+2026-11-10T18:47:20.336Z [WARN ] [TC-GUI-03 [A6]] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:20.517Z [INFO ] [TC-GUI-03 [A5]] ← 204 DELETE /api/patients/17 (206 ms) null
+2026-11-10T18:47:20.518Z [INFO ] [TC-GUI-03 [A5]] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:20.520Z [INFO ] [TC-GUI-03 [A5]] === END status=passed duration=3236 ms
+2026-11-10T18:47:20.560Z [INFO ] [TC-GUI-01] ← 204 DELETE /api/patients/18 (277 ms) null
+2026-11-10T18:47:20.563Z [INFO ] [TC-GUI-01] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:20.569Z [INFO ] [TC-GUI-01] === END status=passed duration=2152 ms
+2026-11-10T18:47:20.605Z [INFO ] [TC-GUI-02 [I1]] === START Реєстрація пацієнта (GUI) > TC-GUI-02 [I1] Помилка валідації: Телефон без коду країни @gui @regression (env=dev, worker=6)
+2026-11-10T18:47:20.621Z [INFO ] [TC-GUI-02 [I1]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:20.670Z [INFO ] [TC-GUI-02 [I2]] === START Реєстрація пацієнта (GUI) > TC-GUI-02 [I2] Помилка валідації: Дата народження в майбутньому @gui @regression (env=dev, worker=7)
+2026-11-10T18:47:20.676Z [INFO ] [TC-GUI-02 [I2]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:20.784Z [INFO ] [TC-GUI-03 [A6]] → DELETE /api/patients/16 
+2026-11-10T18:47:20.981Z [INFO ] [TC-GUI-02 [I2]] ← 200 POST /api/auth/login (304 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:20.984Z [INFO ] [TC-GUI-02 [I2]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:20.984Z [INFO ] [TC-GUI-02 [I2]] Open page /login.html
+2026-11-10T18:47:21.034Z [INFO ] [TC-GUI-02 [I2]] Login as "registrar"
+2026-11-10T18:47:21.128Z [INFO ] [TC-GUI-03 [A6]] ← 204 DELETE /api/patients/16 (343 ms) null
+2026-11-10T18:47:21.130Z [INFO ] [TC-GUI-03 [A6]] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:21.135Z [INFO ] [TC-GUI-03 [A6]] === END status=passed duration=3469 ms
+2026-11-10T18:47:21.138Z [INFO ] [TC-GUI-02 [I1]] ← 200 POST /api/auth/login (516 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:21.142Z [INFO ] [TC-GUI-02 [I1]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:21.142Z [INFO ] [TC-GUI-02 [I1]] Open page /login.html
+2026-11-10T18:47:21.214Z [INFO ] [TC-GUI-02 [I1]] Login as "registrar"
+2026-11-10T18:47:21.324Z [INFO ] [TC-GUI-02 [I3]] === START Реєстрація пацієнта (GUI) > TC-GUI-02 [I3] Помилка валідації: Email без символу @ @gui @regression (env=dev, worker=5)
+2026-11-10T18:47:21.328Z [INFO ] [TC-GUI-02 [I3]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:21.697Z [INFO ] [TC-GUI-02 [I1]] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:21.698Z [INFO ] [TC-GUI-02 [I1]] Open page /patients.html
+2026-11-10T18:47:21.733Z [INFO ] [TC-GUI-02 [I1]] KEYWORD FillPatientForm ["Петренко Іван"]
+2026-11-10T18:47:21.733Z [INFO ] [TC-GUI-02 [I1]] Fill patient form: {"fullName":"Петренко Іван","birthDate":"1978-03-20","phone":"0671234567","email":"ivan.1794336440538824@medclinic.test"}
+2026-11-10T18:47:21.758Z [INFO ] [TC-GUI-02 [I3]] ← 200 POST /api/auth/login (429 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:21.760Z [INFO ] [TC-GUI-02 [I3]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:21.760Z [INFO ] [TC-GUI-02 [I3]] Open page /login.html
+2026-11-10T18:47:21.900Z [INFO ] [TC-GUI-02 [I3]] Login as "registrar"
+2026-11-10T18:47:21.980Z [INFO ] [TC-GUI-02 [I1]] KEYWORD SubmitForm []
+2026-11-10T18:47:22.009Z [INFO ] [TC-GUI-02 [I1]] KEYWORD VerifyValidationError ["phone","Телефон у форматі +380XXXXXXXXX"]
+2026-11-10T18:47:22.133Z [INFO ] [TC-GUI-02 [I2]] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:22.133Z [INFO ] [TC-GUI-02 [I2]] Open page /patients.html
+2026-11-10T18:47:22.146Z [WARN ] [TC-GUI-02 [I1]] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:22.199Z [INFO ] [TC-GUI-02 [I2]] KEYWORD FillPatientForm ["Петренко Іван"]
+2026-11-10T18:47:22.199Z [INFO ] [TC-GUI-02 [I2]] Fill patient form: {"fullName":"Петренко Іван","birthDate":"2026-11-11","phone":"+380671234560","email":"ivan.179433643809094@medclinic.test"}
+2026-11-10T18:47:22.226Z [INFO ] [TC-GUI-02 [I1]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:22.229Z [INFO ] [TC-GUI-02 [I1]] === END status=passed duration=1681 ms
+2026-11-10T18:47:22.335Z [INFO ] [TC-GUI-02 [I4]] === START Реєстрація пацієнта (GUI) > TC-GUI-02 [I4] Помилка валідації: Цифри в ПІБ @gui @regression (env=dev, worker=6)
+2026-11-10T18:47:22.340Z [INFO ] [TC-GUI-02 [I4]] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:22.376Z [INFO ] [TC-GUI-02 [I2]] KEYWORD SubmitForm []
+2026-11-10T18:47:22.404Z [INFO ] [TC-GUI-02 [I2]] KEYWORD VerifyValidationError ["birthDate","Дата народження не може бути в майбутньому"]
+2026-11-10T18:47:22.772Z [WARN ] [TC-GUI-02 [I2]] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:22.829Z [INFO ] [TC-GUI-02 [I4]] ← 200 POST /api/auth/login (489 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:22.832Z [INFO ] [TC-GUI-02 [I4]] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:22.832Z [INFO ] [TC-GUI-02 [I4]] Open page /login.html
+2026-11-10T18:47:22.872Z [INFO ] [TC-GUI-02 [I4]] Login as "registrar"
+2026-11-10T18:47:23.007Z [INFO ] [TC-GUI-02 [I3]] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:23.007Z [INFO ] [TC-GUI-02 [I3]] Open page /patients.html
+2026-11-10T18:47:23.073Z [INFO ] [TC-GUI-02 [I3]] KEYWORD FillPatientForm ["Петренко Іван"]
+2026-11-10T18:47:23.073Z [INFO ] [TC-GUI-02 [I3]] Fill patient form: {"fullName":"Петренко Іван","birthDate":"1978-03-20","phone":"+380671234561","email":"ivan.petrenko.mail.com"}
+2026-11-10T18:47:23.184Z [INFO ] [TC-GUI-02 [I3]] KEYWORD SubmitForm []
+2026-11-10T18:47:23.206Z [INFO ] [TC-GUI-02 [I2]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:23.208Z [INFO ] [TC-GUI-02 [I2]] === END status=passed duration=2575 ms
+2026-11-10T18:47:23.245Z [INFO ] [TC-GUI-02 [I3]] KEYWORD VerifyValidationError ["email","Некоректний email"]
+2026-11-10T18:47:23.295Z [INFO ] [TC-KDT-01] === START TC-KDT-01 Реєстрація нового пацієнта і запис до кардіолога @smoke @gui @kdt (env=dev, worker=7)
+2026-11-10T18:47:23.305Z [INFO ] [TC-KDT-01] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:23.393Z [INFO ] [TC-GUI-02 [I4]] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:23.393Z [INFO ] [TC-GUI-02 [I4]] Open page /patients.html
+2026-11-10T18:47:23.432Z [INFO ] [TC-GUI-02 [I4]] KEYWORD FillPatientForm ["Іван2 Петренко"]
+2026-11-10T18:47:23.432Z [INFO ] [TC-GUI-02 [I4]] Fill patient form: {"fullName":"Іван2 Петренко","birthDate":"1978-03-20","phone":"+380671234562","email":"ivan2.179433644053891@medclinic.test"}
+2026-11-10T18:47:23.573Z [INFO ] [TC-GUI-02 [I4]] KEYWORD SubmitForm []
+2026-11-10T18:47:23.622Z [INFO ] [TC-GUI-02 [I4]] KEYWORD VerifyValidationError ["fullName","ПІБ може містити тільки літери, пробіл, дефіс і апостроф"]
+2026-11-10T18:47:23.746Z [INFO ] [TC-KDT-01] ← 200 POST /api/auth/login (440 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:23.748Z [INFO ] [TC-KDT-01] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:23.748Z [INFO ] [TC-KDT-01] Open page /login.html
+2026-11-10T18:47:23.780Z [WARN ] [TC-GUI-02 [I3]] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:23.792Z [INFO ] [TC-KDT-01] Login as "registrar"
+2026-11-10T18:47:24.056Z [INFO ] [TC-GUI-02 [I3]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:24.059Z [INFO ] [TC-GUI-02 [I3]] === END status=passed duration=2818 ms
+2026-11-10T18:47:24.220Z [WARN ] [TC-GUI-02 [I4]] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:24.279Z [ERROR] [TC-GUI-03 [A4]] KEYWORD VerifyValidationError FAILED: expect(locator).toHaveText(expected) failed
+2026-11-10T18:47:24.281Z [INFO ] [TC-GUI-03 [A4]] → DELETE /api/patients/12 
+2026-11-10T18:47:24.422Z [INFO ] [TC-GUI-02 [I4]] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:24.426Z [INFO ] [TC-GUI-02 [I4]] === END status=passed duration=2165 ms
+2026-11-10T18:47:24.627Z [INFO ] [TC-GUI-03 [A4]] ← 204 DELETE /api/patients/12 (337 ms) null
+2026-11-10T18:47:24.627Z [INFO ] [TC-GUI-03 [A4]] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:24.671Z [ERROR] [TC-GUI-03 [A4]] Test failed on http://localhost:3000/appointment.html, capturing screenshot
+2026-11-10T18:47:24.758Z [INFO ] [TC-GUI-03 [A4]] === END status=failed duration=10613 ms
+2026-11-10T18:47:24.768Z [INFO ] [TC-KDT-01] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:24.768Z [INFO ] [TC-KDT-01] Open page /patients.html
+2026-11-10T18:47:24.833Z [INFO ] [TC-KDT-01] KEYWORD FillPatientForm ["Мороз Наталія Олегівна"]
+2026-11-10T18:47:24.833Z [INFO ] [TC-KDT-01] Fill patient form: {"fullName":"Мороз Наталія Олегівна","birthDate":"1972-08-30","phone":"+380672223344","email":"natalia.1794336443227705@medclinic.test"}
+2026-11-10T18:47:25.040Z [INFO ] [TC-KDT-01] KEYWORD SubmitForm []
+2026-11-10T18:47:25.097Z [INFO ] [TC-KDT-01] KEYWORD VerifySuccessMessage ["Пацієнта зареєстровано"]
+2026-11-10T18:47:25.271Z [INFO ] [Успішна реєстрація нового паці] === START Реєстрація пацієнта в реєстратурі > Успішна реєстрація нового пацієнта (env=dev, worker=9)
+2026-11-10T18:47:25.287Z [INFO ] [Успішна реєстрація нового паці] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:25.526Z [INFO ] [Успішна реєстрація нового паці] ← 200 POST /api/auth/login (238 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:25.544Z [INFO ] [Успішна реєстрація нового паці] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:25.544Z [INFO ] [Успішна реєстрація нового паці] Open page /login.html
+2026-11-10T18:47:25.712Z [INFO ] [Успішна реєстрація нового паці] Login as "registrar"
+2026-11-10T18:47:25.816Z [INFO ] [Перевірка форми на наборі дани] === START Реєстрація пацієнта в реєстратурі > Перевірка форми на наборі даних <dataSet> > Перевірка форми на наборі даних B1 (env=dev, worker=10)
+2026-11-10T18:47:25.864Z [INFO ] [Перевірка форми на наборі дани] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:25.945Z [INFO ] [TC-KDT-01] KEYWORD BookAppointment [{"patientId":19,"doctorId":2,"date":"2026-11-24","time":"09:00"}]
+2026-11-10T18:47:25.945Z [INFO ] [TC-KDT-01] Open page /appointment.html
+2026-11-10T18:47:26.153Z [INFO ] [TC-KDT-01] Book appointment: patient=19, doctor=2, 2026-11-24 09:00
+2026-11-10T18:47:26.285Z [INFO ] [Успішна реєстрація нового паці] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:26.285Z [INFO ] [Успішна реєстрація нового паці] Open page /patients.html
+2026-11-10T18:47:26.333Z [INFO ] [Успішна реєстрація нового паці] KEYWORD FillPatientForm ["Шевченко Олена Петрівна"]
+2026-11-10T18:47:26.333Z [INFO ] [Успішна реєстрація нового паці] Fill patient form: {"fullName":"Шевченко Олена Петрівна","birthDate":"1990-05-14","phone":"+380671234567","email":"patient.1794336446332322@medclinic.test","allergies":"Пеніцилін"}
+2026-11-10T18:47:26.406Z [INFO ] [Перевірка форми на наборі дани] === START Реєстрація пацієнта в реєстратурі > Перевірка форми на наборі даних <dataSet> > Перевірка форми на наборі даних B2 (env=dev, worker=11)
+2026-11-10T18:47:26.435Z [INFO ] [Перевірка форми на наборі дани] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:26.470Z [INFO ] [TC-KDT-01] KEYWORD VerifySuccessMessage ["Запис створено"]
+2026-11-10T18:47:26.473Z [INFO ] [Перевірка форми на наборі дани] ← 200 POST /api/auth/login (607 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:26.488Z [INFO ] [Перевірка форми на наборі дани] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:26.490Z [INFO ] [Перевірка форми на наборі дани] Open page /login.html
+2026-11-10T18:47:26.613Z [INFO ] [Перевірка форми на наборі дани] Login as "registrar"
+2026-11-10T18:47:26.671Z [INFO ] [Успішна реєстрація нового паці] KEYWORD SubmitForm []
+2026-11-10T18:47:26.748Z [INFO ] [Успішна реєстрація нового паці] KEYWORD VerifySuccessMessage ["Пацієнта зареєстровано"]
+2026-11-10T18:47:26.804Z [INFO ] [Перевірка форми на наборі дани] ← 200 POST /api/auth/login (367 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:26.826Z [INFO ] [Перевірка форми на наборі дани] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:26.827Z [INFO ] [Перевірка форми на наборі дани] Open page /login.html
+2026-11-10T18:47:26.909Z [INFO ] [Перевірка форми на наборі дани] Login as "registrar"
+2026-11-10T18:47:27.004Z [INFO ] [Успішна реєстрація нового паці] → DELETE /api/patients/21 
+2026-11-10T18:47:27.322Z [INFO ] [TC-KDT-01] → DELETE /api/appointments/20 
+2026-11-10T18:47:27.422Z [INFO ] [Перевірка форми на наборі дани] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:27.422Z [INFO ] [Перевірка форми на наборі дани] Open page /patients.html
+2026-11-10T18:47:27.428Z [INFO ] [Успішна реєстрація нового паці] ← 204 DELETE /api/patients/21 (423 ms) null
+2026-11-10T18:47:27.429Z [INFO ] [Успішна реєстрація нового паці] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:27.435Z [INFO ] [Успішна реєстрація нового паці] === END status=passed duration=1813 ms
+2026-11-10T18:47:27.493Z [INFO ] [Перевірка форми на наборі дани] KEYWORD FillPatientForm ["аааааааааааааааааааааааааааааааааааааааааааааааааа"]
+2026-11-10T18:47:27.493Z [INFO ] [Перевірка форми на наборі дани] Fill patient form: {"fullName":"аааааааааааааааааааааааааааааааааааааааааааааааааа","birthDate":"2001-01-01","phone":"+380501234568","email":"max.1794336447492712@medclinic.test"}
+2026-11-10T18:47:27.598Z [INFO ] [Перевірка форми на наборі дани] === START Реєстрація пацієнта в реєстратурі > Перевірка форми на наборі даних <dataSet> > Перевірка форми на наборі даних B5 (env=dev, worker=9)
+2026-11-10T18:47:27.607Z [INFO ] [Перевірка форми на наборі дани] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:27.705Z [INFO ] [Перевірка форми на наборі дани] KEYWORD SubmitForm []
+2026-11-10T18:47:27.713Z [INFO ] [Перевірка форми на наборі дани] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:27.713Z [INFO ] [Перевірка форми на наборі дани] Open page /patients.html
+2026-11-10T18:47:27.773Z [INFO ] [Перевірка форми на наборі дани] KEYWORD FillPatientForm ["Ян"]
+2026-11-10T18:47:27.773Z [INFO ] [Перевірка форми на наборі дани] Fill patient form: {"fullName":"Ян","birthDate":"2001-01-01","phone":"+380501234567","email":"yan.1794336447772720@medclinic.test"}
+2026-11-10T18:47:27.793Z [INFO ] [Перевірка форми на наборі дани] KEYWORD VerifySuccessMessage ["Пацієнта зареєстровано"]
+2026-11-10T18:47:27.840Z [INFO ] [TC-KDT-01] ← 204 DELETE /api/appointments/20 (517 ms) null
+2026-11-10T18:47:27.840Z [INFO ] [TC-KDT-01] → DELETE /api/patients/19 
+2026-11-10T18:47:27.915Z [INFO ] [Перевірка форми на наборі дани] KEYWORD SubmitForm []
+2026-11-10T18:47:27.937Z [INFO ] [Перевірка форми на наборі дани] ← 200 POST /api/auth/login (330 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:27.939Z [INFO ] [Перевірка форми на наборі дани] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:27.943Z [INFO ] [Перевірка форми на наборі дани] Open page /login.html
+2026-11-10T18:47:27.999Z [INFO ] [Перевірка форми на наборі дани] KEYWORD VerifySuccessMessage ["Пацієнта зареєстровано"]
+2026-11-10T18:47:28.026Z [INFO ] [Перевірка форми на наборі дани] Login as "registrar"
+2026-11-10T18:47:28.234Z [INFO ] [TC-KDT-01] ← 204 DELETE /api/patients/19 (393 ms) null
+2026-11-10T18:47:28.234Z [INFO ] [TC-KDT-01] Cleanup: removed 1 patients, 1 appointments
+2026-11-10T18:47:28.237Z [INFO ] [TC-KDT-01] === END status=passed duration=4080 ms
+2026-11-10T18:47:28.503Z [INFO ] [Перевірка форми на наборі дани] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:28.503Z [INFO ] [Перевірка форми на наборі дани] Open page /patients.html
+2026-11-10T18:47:28.549Z [INFO ] [Перевірка форми на наборі дани] KEYWORD FillPatientForm ["ааааааааааааааааааааааааааааааааааааааааааааааааааа"]
+2026-11-10T18:47:28.549Z [INFO ] [Перевірка форми на наборі дани] Fill patient form: {"fullName":"ааааааааааааааааааааааааааааааааааааааааааааааааааа","birthDate":"2001-01-01","phone":"+380501234569","email":"long.179433644854969@medclinic.test"}
+2026-11-10T18:47:28.667Z [INFO ] [Перевірка форми на наборі дани] → DELETE /api/patients/22 
+2026-11-10T18:47:28.725Z [INFO ] [Перевірка форми на наборі дани] KEYWORD SubmitForm []
+2026-11-10T18:47:28.792Z [INFO ] [Перевірка форми на наборі дани] KEYWORD VerifyValidationError ["fullName","ПІБ має містити від 2 до 50 символів"]
+2026-11-10T18:47:28.825Z [INFO ] [Перевірка форми на наборі дани] → DELETE /api/patients/23 
+2026-11-10T18:47:28.901Z [INFO ] [Перевірка форми на наборі дани] ← 204 DELETE /api/patients/22 (233 ms) null
+2026-11-10T18:47:28.903Z [INFO ] [Перевірка форми на наборі дани] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:28.908Z [INFO ] [Перевірка форми на наборі дани] === END status=passed duration=2478 ms
+2026-11-10T18:47:29.049Z [INFO ] [Перевірка форми на наборі дани] === START Реєстрація пацієнта в реєстратурі > Перевірка форми на наборі даних <dataSet> > Перевірка форми на наборі даних I3 (env=dev, worker=11)
+2026-11-10T18:47:29.057Z [INFO ] [Перевірка форми на наборі дани] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:29.198Z [INFO ] [Перевірка форми на наборі дани] ← 204 DELETE /api/patients/23 (372 ms) null
+2026-11-10T18:47:29.199Z [INFO ] [Перевірка форми на наборі дани] Cleanup: removed 1 patients, 0 appointments
+2026-11-10T18:47:29.203Z [INFO ] [Перевірка форми на наборі дани] === END status=passed duration=3123 ms
+2026-11-10T18:47:29.241Z [INFO ] [Перевірка форми на наборі дани] === START Реєстрація пацієнта в реєстратурі > Перевірка форми на наборі даних <dataSet> > Перевірка форми на наборі даних I1 (env=dev, worker=12)
+2026-11-10T18:47:29.256Z [INFO ] [Перевірка форми на наборі дани] → POST /api/auth/login {"login":"registrar","password":"***"}
+2026-11-10T18:47:29.290Z [WARN ] [Перевірка форми на наборі дани] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:29.414Z [INFO ] [Перевірка форми на наборі дани] ← 200 POST /api/auth/login (157 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:29.430Z [INFO ] [Перевірка форми на наборі дани] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:29.430Z [INFO ] [Перевірка форми на наборі дани] Open page /login.html
+2026-11-10T18:47:29.503Z [INFO ] [Перевірка форми на наборі дани] Login as "registrar"
+2026-11-10T18:47:29.563Z [INFO ] [Перевірка форми на наборі дани] ← 200 POST /api/auth/login (505 ms) {"token":"***","role":"registrar","name":"Олена Коваль"}
+2026-11-10T18:47:29.565Z [INFO ] [Перевірка форми на наборі дани] KEYWORD LoginAs ["registrar"]
+2026-11-10T18:47:29.565Z [INFO ] [Перевірка форми на наборі дани] Open page /login.html
+2026-11-10T18:47:29.599Z [INFO ] [Перевірка форми на наборі дани] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:29.601Z [INFO ] [Перевірка форми на наборі дани] === END status=passed duration=2071 ms
+2026-11-10T18:47:29.670Z [INFO ] [Перевірка форми на наборі дани] Login as "registrar"
+2026-11-10T18:47:30.577Z [INFO ] [Перевірка форми на наборі дани] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:30.577Z [INFO ] [Перевірка форми на наборі дани] Open page /patients.html
+2026-11-10T18:47:30.614Z [INFO ] [Перевірка форми на наборі дани] KEYWORD FillPatientForm ["Петренко Іван"]
+2026-11-10T18:47:30.614Z [INFO ] [Перевірка форми на наборі дани] Fill patient form: {"fullName":"Петренко Іван","birthDate":"1978-03-20","phone":"0671234567","email":"ivan.1794336450613324@medclinic.test"}
+2026-11-10T18:47:30.650Z [INFO ] [Перевірка форми на наборі дани] KEYWORD OpenApplication ["patients"]
+2026-11-10T18:47:30.650Z [INFO ] [Перевірка форми на наборі дани] Open page /patients.html
+2026-11-10T18:47:30.694Z [INFO ] [Перевірка форми на наборі дани] KEYWORD FillPatientForm ["Петренко Іван"]
+2026-11-10T18:47:30.694Z [INFO ] [Перевірка форми на наборі дани] Fill patient form: {"fullName":"Петренко Іван","birthDate":"1978-03-20","phone":"+380671234561","email":"ivan.petrenko.mail.com"}
+2026-11-10T18:47:30.874Z [INFO ] [Перевірка форми на наборі дани] KEYWORD SubmitForm []
+2026-11-10T18:47:30.879Z [INFO ] [Перевірка форми на наборі дани] KEYWORD SubmitForm []
+2026-11-10T18:47:30.914Z [INFO ] [Перевірка форми на наборі дани] KEYWORD VerifyValidationError ["phone","Телефон у форматі +380XXXXXXXXX"]
+2026-11-10T18:47:30.936Z [INFO ] [Перевірка форми на наборі дани] KEYWORD VerifyValidationError ["email","Некоректний email"]
+2026-11-10T18:47:31.318Z [WARN ] [Перевірка форми на наборі дани] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:31.335Z [WARN ] [Перевірка форми на наборі дани] Browser console error: Failed to load resource: the server responded with a status of 400 (Bad Request)
+2026-11-10T18:47:31.717Z [INFO ] [Перевірка форми на наборі дани] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:31.721Z [INFO ] [Перевірка форми на наборі дани] === END status=passed duration=2566 ms
+2026-11-10T18:47:31.733Z [INFO ] [Перевірка форми на наборі дани] Cleanup: removed 0 patients, 0 appointments
+2026-11-10T18:47:31.741Z [INFO ] [Перевірка форми на наборі дани] === END status=passed duration=2755 ms

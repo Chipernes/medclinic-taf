@@ -1,0 +1,10 @@
+body{font-family:Arial,sans-serif;background:#f2f6fa;margin:0}
+header{background:#1f6f8b;color:#fff;padding:12px 24px;display:flex;justify-content:space-between}
+main{max-width:520px;margin:32px auto;background:#fff;padding:24px 32px;border-radius:8px;box-shadow:0 2px 8px #0002}
+label{display:block;margin-top:12px;font-weight:bold;font-size:14px}
+input,select{width:100%;padding:8px;margin-top:4px;box-sizing:border-box;border:1px solid #aab;border-radius:4px}
+.error{color:#c0392b;font-size:13px;min-height:16px}
+button{margin-top:18px;padding:10px 18px;background:#1f6f8b;color:#fff;border:0;border-radius:4px;cursor:pointer}
+.alert{margin-top:16px;padding:10px;border-radius:4px}
+.alert.ok{background:#e3f6e8;color:#1e7b34}.alert.fail{background:#fde8e6;color:#c0392b}
+nav a{color:#fff;margin-left:16px}

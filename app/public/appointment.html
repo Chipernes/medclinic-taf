@@ -1,0 +1,24 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><title>MedClinic - Запис на прийом</title><link rel="stylesheet" href="style.css"></head>
+<body><script src="common.js"></script><script>header()</script>
+<main><h2>Запис на прийом</h2>
+<form id="appt-form" novalidate>
+<label for="patientId">Номер картки пацієнта</label><input id="patientId" data-testid="patientId-input"><div class="error" data-testid="error-patientId"></div>
+<label for="doctorId">Лікар</label><select id="doctorId" data-testid="doctor-select"></select><div class="error" data-testid="error-doctorId"></div>
+<label for="date">Дата</label><input id="date" type="date" data-testid="date-input"><div class="error" data-testid="error-date"></div>
+<label for="time">Час</label><input id="time" type="time" step="1800" data-testid="time-input"><div class="error" data-testid="error-time"></div>
+<button type="submit" data-testid="appointment-submit">Записати</button>
+<div data-testid="alert" class="alert" hidden></div>
+</form></main>
+<script>
+(async () => {
+  // лікарі завантажуються асинхронно, тому тест має чекати на появу опцій
+  const r = await api('/api/doctors');
+  doctorId.innerHTML = r.data.map(d => `<option value="${d.id}">${d.name} (${d.specialty})</option>`).join('');
+})();
+document.getElementById('appt-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const r = await api('/api/appointments', 'POST', { patientId: patientId.value, doctorId: doctorId.value, date: date.value, time: time.value });
+  if (r.status === 201) { showErrors(); alertBox(`Запис створено: ${r.data.date} о ${r.data.time}`, true); document.querySelector('[data-testid="alert"]').dataset.appointmentId = r.data.id; }
+  else { showErrors(r.data.errors); alertBox(r.data.error || 'Перевірте правильність заповнення форми', false); }
+});
+</script></body></html>

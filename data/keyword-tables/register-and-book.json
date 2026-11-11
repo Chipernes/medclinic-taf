@@ -1,0 +1,13 @@
+{
+  "id": "KDT-01",
+  "name": "Реєстрація нового пацієнта і запис до кардіолога",
+  "steps": [
+    { "keyword": "LoginAs", "args": ["registrar"] },
+    { "keyword": "OpenApplication", "args": ["patients"] },
+    { "keyword": "FillPatientForm", "args": [{ "fullName": "Мороз Наталія Олегівна", "birthDate": "1972-08-30", "phone": "+380672223344", "email": "natalia.{{uniq}}@medclinic.test" }] },
+    { "keyword": "SubmitForm" },
+    { "keyword": "VerifySuccessMessage", "args": ["Пацієнта зареєстровано"], "saveAs": "patientId" },
+    { "keyword": "BookAppointment", "args": [{ "patientId": "$patientId", "doctorId": 2, "date": "{{today+14d}}", "time": "09:00" }] },
+    { "keyword": "VerifySuccessMessage", "args": ["Запис створено"] }
+  ]
+}

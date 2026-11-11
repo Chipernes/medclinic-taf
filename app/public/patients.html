@@ -1,0 +1,21 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><title>MedClinic - Реєстрація пацієнта</title><link rel="stylesheet" href="style.css"></head>
+<body><script src="common.js"></script><script>header()</script>
+<main><h2>Реєстрація пацієнта</h2>
+<form id="patient-form" novalidate>
+<label for="fullName">ПІБ</label><input id="fullName" data-testid="fullName-input"><div class="error" data-testid="error-fullName"></div>
+<label for="birthDate">Дата народження</label><input id="birthDate" type="date" data-testid="birthDate-input"><div class="error" data-testid="error-birthDate"></div>
+<label for="phone">Телефон</label><input id="phone" data-testid="phone-input" placeholder="+380XXXXXXXXX"><div class="error" data-testid="error-phone"></div>
+<label for="email">Email</label><input id="email" data-testid="email-input"><div class="error" data-testid="error-email"></div>
+<label for="allergies">Алергії (необов'язково)</label><input id="allergies" data-testid="allergies-input">
+<button type="submit" data-testid="patient-submit">Зареєструвати</button>
+<div data-testid="alert" class="alert" hidden></div>
+</form></main>
+<script>
+document.getElementById('patient-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const body = { fullName: fullName.value, birthDate: birthDate.value, phone: phone.value, email: email.value, allergies: allergies.value };
+  const r = await api('/api/patients', 'POST', body);
+  if (r.status === 201) { showErrors(); alertBox(`Пацієнта зареєстровано, картка №${r.data.id}`, true); document.querySelector('[data-testid="alert"]').dataset.patientId = r.data.id; }
+  else { showErrors(r.data.errors); alertBox(r.data.error || 'Перевірте правильність заповнення форми', false); }
+});
+</script></body></html>
